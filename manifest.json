@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "file-router",
+	"name": "File Router",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Automatically route files into folders based on regular expressions. Organize your PDFs, images, and notes effortlessly.",
+	"author": "OnceMonkey",
+	"authorUrl": "https://github.com/OnceMonkey",
+	"fundingUrl": "https://github.com/OnceMonkey",
 	"isDesktopOnly": false
 }

@@ -1,94 +1,102 @@
-# Obsidian Sample Plugin
+# File Router
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+Automatically route files into folders based on regular expressions.
+Effortlessly organize your PDFs, images, and notes in Obsidian.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+---
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+## 🛠️ Demo
 
-## First time developing plugins?
+As shown in the example below, once configured, newly added files like images or PDFs are automatically moved to the specified folder.
+If timestamp-based renaming is enabled, the file name will automatically be updated with a timestamp to avoid duplicates.
 
-Quick starting guide for new plugin devs:
+![Demo Example](images/example.gif)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+---
 
-## Releasing new releases
+## ✨ Features
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+* 📁 **Automatically move files based on regex rules**
+  Route files into folders according to filename patterns.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+* 🚫 **Skip specific files**
+  Exclude certain files from processing based on rules.
 
-## Adding your plugin to the community plugin list
+* ⌛ **Timestamp-based file renaming**
+  Automatically rename new files using a timestamp to avoid name collisions.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+* 🔄 **Real-time file handling**
+  Files are organized instantly when created or added.
 
-## How to use
+* ⚙️ **Simple and flexible configuration**
+  Easy to configure using a regex table.
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+---
 
-## Manually installing the plugin
+## 🚧 Planned Features
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+* Add regex validation to prevent misconfigurations.
+* Supports relative path to decide Target Folder.
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+---
 
-## Funding URL
+## 🔧 Example Rules
 
-You can include funding URLs where people who use your plugin can financially support it.
+| Regex                                 | Target Folder       |
+| ------------------------------------- | ------------------- |
+| `\.(png\|jpg\|jpeg\|bmp\|gif\|webp)$` | `attachments/image` |
+| `\.(pdf)$`                            | `attachments/pdf`   |
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+> ✔️ Example: When inserting an image like `screenshot.png`, it will automatically move to `/attachments/image/`.
+
+---
+
+## 📦 How It Works
+
+1. ⚙️ You define a set of rules using regular expressions.
+2. 📄 When a new file is created (via paste, drag-drop, or attachment), File Router checks the rules.
+3. 🔍 If the filename matches a regex, it is moved to the corresponding folder. 
+4. 🔄 Files that don't match any rule will remain in their default location.
+
+---
+
+## 📁 Example Configuration
 
 ```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+[
+  { "regex": "\\.(pdf)$", "targetDir": "attachments/pdf" },
+  { "regex": "\\.(png|jpg|jpeg|bmp|gif|webp)$", "targetDir": "attachments/image" },
+]
 ```
 
-If you have multiple URLs, you can also do:
+## 🗂️ Example Folder Structure
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+```
+vault/
+├── attachments/
+│   ├── image/
+│   └── pdf/
+├── note1.md
+└── note2.md
 ```
 
-## API Documentation
+---
 
-See https://github.com/obsidianmd/obsidian-api
+## ❤️ Contribution & Feedback
+
+* 💡 Feature requests and pull requests are welcome!
+* 🐛 Found a bug? Please open an issue.
+* 🌟 If you like this plugin, give it a ⭐️ on GitHub!
+
+---
+
+## 🙏 Acknowledgements
+
+This project is inspired by and references code from [obsidian-attachment-management](https://github.com/trganda/obsidian-attachment-management).
+Special thanks to the author for providing an excellent foundation for handling file attachments in Obsidian.
+
+---
+
+## 🏗️ License
+
+MIT License.
