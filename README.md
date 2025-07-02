@@ -3,7 +3,7 @@
 Automatically route files into folders based on regular expressions.
 Effortlessly organize your PDFs, images, and notes in Obsidian.
 
----
+
 
 ## 🛠️ Demo
 
@@ -12,7 +12,6 @@ If timestamp-based renaming is enabled, the file name will automatically be upda
 
 ![Demo Example](images/example.gif)
 
----
 
 ## ✨ Features
 
@@ -31,14 +30,14 @@ If timestamp-based renaming is enabled, the file name will automatically be upda
 * ⚙️ **Simple and flexible configuration**
   Easy to configure using a regex table.
 
----
+
 
 ## 🚧 Planned Features
 
 * Add regex validation to prevent misconfigurations.
 * Supports relative path to decide Target Folder.
 
----
+
 
 ## 🔧 Example Rules
 
@@ -49,7 +48,7 @@ If timestamp-based renaming is enabled, the file name will automatically be upda
 
 > ✔️ Example: When inserting an image like `screenshot.png`, it will automatically move to `/attachments/image/`.
 
----
+
 
 ## 📦 How It Works
 
@@ -58,7 +57,7 @@ If timestamp-based renaming is enabled, the file name will automatically be upda
 3. 🔍 If the filename matches a regex, it is moved to the corresponding folder. 
 4. 🔄 Files that don't match any rule will remain in their default location.
 
----
+
 
 ## 📁 Example Configuration
 
@@ -80,7 +79,20 @@ vault/
 └── note2.md
 ```
 
----
+
+## ❓ Q&A
+
+### Q: How should I set Obsidian’s default attachment folder?
+
+A: You can set it to anything you like. The plugin will first save new files into the default attachment folder, then automatically move them to the target folders based on your rules.  
+If a file does not match any rule, it will stay in the default folder. You can think of the default folder as a temporary storage for uncategorized files.
+
+Example:
+
+![Example](images/default_path.png)
+
+
+
 
 ## ❤️ Contribution & Feedback
 
@@ -88,14 +100,13 @@ vault/
 * 🐛 Found a bug? Please open an issue.
 * 🌟 If you like this plugin, give it a ⭐️ on GitHub!
 
----
 
 ## 🙏 Acknowledgements
 
 This project is inspired by and references code from [obsidian-attachment-management](https://github.com/trganda/obsidian-attachment-management).
 Special thanks to the author for providing an excellent foundation for handling file attachments in Obsidian.
 
----
+
 
 ## 🏗️ License
 
