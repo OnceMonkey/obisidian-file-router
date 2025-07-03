@@ -164,11 +164,11 @@ export default class FileRouterPlugin extends Plugin {
 		// console.log("fileExtention:", fileExtention);
 		// console.log("timestamp:", timestamp);
 
-		var targetDir: string = ""
-		var dstPath: string = ""
+		let targetDir: string = ""
+		let dstPath: string = ""
 
 		// 遍历文件映射表, 查询映射后的地址
-		var matchSuccess = false;
+		let matchSuccess = false;
 		for (const mapping of fileMappings) {
 			const regex = mapping.regex;
 			const directory = mapping.targetDir;
@@ -202,7 +202,7 @@ export default class FileRouterPlugin extends Plugin {
 		}
 
 		// 根据用户自定义的规则, 指定文件名称.
-		var targetFile: string = renderTemplate(this.settings.attachmentFormat, {
+		let targetFile: string = renderTemplate(this.settings.attachmentFormat, {
 			"fileName": fileName,
 			"fileExtention": fileExtention,
 			"timestamp": timestamp,
@@ -320,7 +320,7 @@ class SampleSettingTab extends PluginSettingTab {
 		// 1.配置文件映射表
 		containerEl.createEl('h3', { text: '文件映射表' });
 
-		var fileMapping = this.plugin.settings.fileMapping;
+		let fileMapping = this.plugin.settings.fileMapping;
 		console.log("当前文件映射规则:", fileMapping, typeof fileMapping);
 
 		if (fileMapping.length === 0) {
